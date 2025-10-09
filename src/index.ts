@@ -6,12 +6,27 @@
 import { ValidatorNode } from './validatornode';
 import minimist from 'minimist';
 
+/**
+ * Command line argument interface
+ */
 interface Args {
+    /**
+     * Enable verbose mode for detailed output
+     */
     verbose?: boolean;
+    /**
+     * Path to the input file
+     */
     input?: string;
+    /**
+     * Path to the output file
+     */
     output?: string;
 }
 
+/**
+ * Parse command line arguments
+ */
 const args: Args = minimist(process.argv.slice(2), {
     boolean: ['verbose'],
     alias: {
@@ -21,6 +36,9 @@ const args: Args = minimist(process.argv.slice(2), {
     }
 });
 
+/**
+ * Main application entry point
+ */
 async function main(): Promise<void> {
     try {
         const app = new ValidatorNode({
@@ -45,6 +63,9 @@ async function main(): Promise<void> {
     }
 }
 
+/**
+ * Entry point for standalone execution
+ */
 if (require.main === module) {
     main();
 }
